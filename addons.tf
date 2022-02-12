@@ -72,6 +72,6 @@ resource "rancher2_app_v2" "external_dns" {
   repo_name  = "bitnami"
   chart_name = "external-dns"
   namespace  = "external-dns"
-  values     = format(file("${path.module}/etc/external-dns-config.yaml"), var.dns_server, var.dns_port)
+  values     = format(file("${path.module}/etc/external-dns-config.yaml"), var.dns_server, var.dns_port, var.searchdomain)
 }
 
