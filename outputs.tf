@@ -7,7 +7,7 @@ output "cluster_default_project_id" {
 }
 
 output "cluster_kubeconfig" {
-  value     = rancher2_cluster.kube_cluster.kube_config
+  value     = base64encode(rancher2_cluster.kube_cluster.kube_config)
   sensitive = true
 }
 
