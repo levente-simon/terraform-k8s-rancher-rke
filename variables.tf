@@ -10,7 +10,9 @@ variable "dns_port"             { type = string }
 variable "searchdomain"         { type = string }
 variable "rancher_token"        { 
   type      = string  
-  sensitive = true }
+  sensitive = true
+ }
 variable "ssh_private_key"      {
   type      = string   
-  sensitive = true }
+  sensitive = true
+ }
