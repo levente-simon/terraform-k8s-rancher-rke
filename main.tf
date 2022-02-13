@@ -28,6 +28,9 @@ resource "rancher2_cluster" "kube_cluster" {
       plugin = "canal"
     }
   }
+  cluster_auth_endpoint {
+    enabled = true
+  }
   agent_env_vars {
     name  = "HTTPS_PROXY"
     value = var.proxy
