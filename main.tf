@@ -64,3 +64,8 @@ resource "rancher2_cluster_sync" "sync" {
   cluster_id =  rancher2_cluster.kube_cluster.id
 }
 
+resource "time_sleep" "wait_30_sec" {
+  depends_on      = [ rancher2_cluster_sync.sync ]
+  create_duration = "30s"
+}
+
