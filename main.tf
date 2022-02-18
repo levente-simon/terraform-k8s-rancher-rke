@@ -61,10 +61,10 @@ resource "null_resource" "provision_k8s" {
 }
 
 resource "rancher2_cluster_sync" "sync" {
-  cluster_id =  rancher2_cluster.kube_cluster.id
+  cluster_id = rancher2_cluster.kube_cluster.id
 }
 
 data "rancher2_cluster" "kube_cluster" {
-  depends_on      = [ rancher2_cluster_sync.sync ]
-  name = var.cluster_name
+  depends_on = [ rancher2_cluster_sync.sync ]
+  name       = var.cluster_name
 }
