@@ -13,6 +13,13 @@ provider "rancher2" {
   insecure   = true
 }
 
+provider "rancher2" {
+  alias      = "new"
+  api_url    = var.rancher_url
+  token_key  = var.rancher_token
+  insecure   = true
+}
+
 variable module_depends_on {
   type    = any
   default = []
@@ -64,7 +71,14 @@ resource "rancher2_cluster_sync" "sync" {
   cluster_id = rancher2_cluster.kube_cluster.id
 }
 
+resource "time_sleep" "wait_30s" {
+  depends_on      = [ rancher2_cluster_sync.sync ]
+  create_duration = "30s"
+}
+
 data "rancher2_cluster" "kube_cluster" {
-  depends_on = [ rancher2_cluster_sync.sync ]
+  depends_on = [ time_sleep.wait_30s ]
+
+  provider   = rancher2.new
   name       = var.cluster_name
 }
