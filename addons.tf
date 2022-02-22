@@ -26,6 +26,15 @@ resource "rancher2_catalog_v2" "metallb" {
   name       = "metallb"
   url        = "https://metallb.github.io/metallb"
 }
+  
+resource "rancher2_catalog_v2" "jetstack" {
+  depends_on = [ time_sleep.wait_30_seconds ]
+  provider   = rancher2.new
+  cluster_id = data.rancher2_cluster.kube_cluster.id
+
+  name       = "jetstack"
+  url        = "https://charts.jetstack.io"
+}
 
 ################################################################
 ##
@@ -81,5 +90,24 @@ resource "rancher2_app_v2" "external_dns" {
   chart_name = "external-dns"
   namespace  = "external-dns"
   values     = format(file("${path.module}/etc/external-dns-config.yaml"), var.dns_server, var.dns_port, var.searchdomain)
+}
+
+################################################################
+##
+##       cert-manager
+##
+################################################################
+
+resource "rancher2_app_v2" "cert-manager" {
+  depends_on = [ rancher2_catalog_v2.jetstack,
+                 time_sleep.wait_30_seconds ]
+  provider   = rancher2.new
+  cluster_id = data.rancher2_cluster.kube_cluster.id
+
+  name       = "cert-manager"
+  repo_name  = "jetstack"
+  chart_name = "cert-manager"
+  namespace  = "cert-manager"
+  values     = "installCRDs: false"
 }
 
