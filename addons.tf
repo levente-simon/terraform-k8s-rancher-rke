@@ -108,6 +108,6 @@ resource "rancher2_app_v2" "cert-manager" {
   repo_name  = "jetstack"
   chart_name = "cert-manager"
   namespace  = "cert-manager"
-  values     = "installCRDs: false"
+  values     = "installCRDs: true"
 }
 
