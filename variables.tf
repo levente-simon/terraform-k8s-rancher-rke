@@ -16,3 +16,8 @@ variable "ssh_private_key"      {
   type      = string   
   sensitive = true
  }
+
+ variable "longhorn_data_path" {
+  type    = string
+  default = "/data/longhorn"
+}
