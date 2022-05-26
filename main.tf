@@ -46,7 +46,7 @@ resource "rancher2_cluster" "kube_cluster" {
 #    name  = "NO_PROXY"
 #    value = var.no_proxy
 #  }
-#}
+}
 
 resource "null_resource" "provision_k8s" {
   depends_on = [rancher2_cluster.kube_cluster ]
