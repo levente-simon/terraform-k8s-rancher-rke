@@ -38,15 +38,15 @@ resource "rancher2_cluster" "kube_cluster" {
   cluster_auth_endpoint {
     enabled = true
   }
-  agent_env_vars {
-    name  = "HTTPS_PROXY"
-    value = var.proxy
-  }
-  agent_env_vars {
-    name  = "NO_PROXY"
-    value = var.no_proxy
-  }
-}
+#  agent_env_vars {
+#    name  = "HTTPS_PROXY"
+#    value = var.proxy
+#  }
+#  agent_env_vars {
+#    name  = "NO_PROXY"
+#    value = var.no_proxy
+#  }
+#}
 
 resource "null_resource" "provision_k8s" {
   depends_on = [rancher2_cluster.kube_cluster ]

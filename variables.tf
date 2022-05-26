@@ -7,14 +7,14 @@ variable "dns_server"           { type = string }
 variable "dns_port"             { type = string }
 variable "searchdomain"         { type = string }
 
-variable "proxy"                {
-  type = string
-  default = ""
-}
-variable "no_proxy"             {
-  type = string
-  default = ""
-}
+#variable "proxy"                {
+#  type = string
+#  default = ""
+#}
+#variable "no_proxy"             {
+#  type = string
+#  default = ""
+#}
 variable "rancher_token"        { 
   type      = string  
   sensitive = true
