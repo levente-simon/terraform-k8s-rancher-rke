@@ -49,7 +49,7 @@ resource "rancher2_cluster" "kube_cluster" {
 }
 
 resource "null_resource" "provision_k8s" {
-  depends_on = [rancher2_cluster.kube_cluster ]
+  depends_on = [ rancher2_cluster.kube_cluster ]
 
   for_each = var.cluster_hosts
 
@@ -68,6 +68,7 @@ resource "null_resource" "provision_k8s" {
 }
 
 resource "rancher2_cluster_sync" "sync" {
+  depends_on = [ null_resource.provision_k8s ]
   cluster_id = rancher2_cluster.kube_cluster.id
 }
 
