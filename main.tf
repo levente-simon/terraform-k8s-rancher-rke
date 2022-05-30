@@ -62,7 +62,7 @@ resource "null_resource" "provision_k8s" {
 
   provisioner "remote-exec" {
     inline = [
-      format("${rancher2_cluster.kube_cluster.cluster_registration_token.0.node_command} --%s", join(" --", each.value.roles))
+      format("${rancher2_cluster.kube_cluster.cluster_registration_token.0.node_command} --%s; sleep 2", join(" --", each.value.roles))
     ]
   }
 }
