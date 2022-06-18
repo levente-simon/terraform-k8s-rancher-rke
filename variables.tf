@@ -28,3 +28,8 @@ variable "ssh_private_key"      {
   type    = string
   default = "/data/longhorn"
 }
+
+variable "longhorn_default_replica_count" {
+  type    = number
+  default = 3
+}
