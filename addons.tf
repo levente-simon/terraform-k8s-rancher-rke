@@ -51,7 +51,9 @@ resource "rancher2_app_v2" "longhorn" {
   repo_name  = "rancher-charts"
   chart_name = "longhorn"
   namespace  = "longhorn-system"
-  values     = format(file("${path.module}/etc/longhorn-config.yaml"), var.longhorn_data_path, var.longhorn_default_replica_count)
+  values     = format(file("${path.module}/etc/longhorn-config.yaml"), var.longhorn_data_path,
+    var.longhorn_default_replica_count,
+    var.longhorn_default_replica_count)
 }
 
 ################################################################
